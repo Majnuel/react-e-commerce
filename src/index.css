@@ -1,13 +1,96 @@
+/* Reset */
+:root {
+  --blanco: #ffffff;
+  --negro: #000000;
+  --fondoOscuro: rgb(50, 50, 87);
+  --headingFont: "PT Sans", sans-serif;
+  --textFont: "Roboto", sans-serif;
+  --botonPrimario: #db3604;
+  --botonPrimarioOscuro: #ac2800;
+}
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 body {
+  font-size: 18px;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  font-family: "Lato", sans-serif;
+}
+h1,
+h2,
+h3 {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+h1,
+h2 {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+}
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2.4rem;
+}
+h3 {
+  font-family: "PT Sans", sans-serif;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: var(--blanco);
+}
+div#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.header-wraper {
+  background-color: var(--fondoOscuro);
+  height: 10rem;
+}
+
+.header {
+  color: #ffffff;
+  height: 100%;
+}
+
+.navbar {
+  color: #ffffff;
+}
+
+.navbar li {
+  margin: 0 3rem 0 3rem;
+}
+
+.cart {
+  color: #ffffff;
+}
+
+.footer-wrapper {
+  background-color: var(--fondoOscuro);
+  color: var(--blanco);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;
+}
+
+.productCard {
+  min-width: 20%;
+  flex-basis: 25%;
 }
