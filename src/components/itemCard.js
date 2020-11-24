@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import QuantityInput from "./quantityInput";
 import { Link } from "react-router-dom";
-import usePruebaContext from "../context/globalContext";
+import { CartContext } from "../context/cartContext";
 
 export default function ItemCard(props) {
-  const pruebaContext = usePruebaContext();
-  const { prueba } = pruebaContext;
-  console.log(prueba);
+  const cartContext = useContext(CartContext);
+  const { item, setItem } = cartContext;
+  console.log(item);
   return (
     <div className="card productCard">
       <Link to={"/itemDetail/" + props.productName}>
@@ -25,7 +25,12 @@ export default function ItemCard(props) {
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel animi
           autem deserunt, dolorem earum quos.
         </p>
-        <button className="btn btn-primary">Add to Cart</button>
+        <button
+          onClick={() => setItem("se agregó un item al cart")}
+          className="btn btn-primary"
+        >
+          Add to Cart
+        </button>
         <QuantityInput />
         <div>Price: {props.price}</div>
       </div>

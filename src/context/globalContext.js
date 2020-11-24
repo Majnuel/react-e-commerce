@@ -1,21 +1,22 @@
-// import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
-// const PruebaContext = createContext();
+const GlobalContext = createContext();
 
-// export const usePruebaContext = () => useContext(PruebaContext);
+const GlobalContextProvider = (props) => {
+  const [prueba, setPrueba] = useState(
+    "Data en globalContext, desde globalContext"
+  );
+  console.log(prueba);
+  return (
+    <GlobalContext.Provider
+      value={{
+        prueba,
+        setPrueba,
+      }}
+    >
+      {props.children}
+    </GlobalContext.Provider>
+  );
+};
 
-// const PruebaContextProvider = ({ children }) => {
-//   const [prueba, setprueba] = useState("Mensaje en context");
-//   return (
-//     <PruebaContext.Provider
-//       value={{
-//         prueba,
-//         setprueba,
-//       }}
-//     >
-//       {children}
-//     </PruebaContext.Provider>
-//   );
-// };
-
-// export default PruebaContextProvider;
+export default GlobalContextProvider;

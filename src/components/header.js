@@ -17,7 +17,7 @@ function Header() {
         </Link>
         <Navbar />
         <Link to="/cart">
-          <Cart />
+          <h1>Cart</h1>
         </Link>
       </div>
       <Switch>
