@@ -5,9 +5,12 @@ export const CartContext = createContext();
 export const useCartContext = () => useContext(CartContext);
 
 const CartContextProvider = (props) => {
-  const [item, setItem] = useState("Nombre de Item(data en CartContext)");
+  const [item, setItem] = useState([]);
+  const pushItem = (newItem) => {
+    item.push(newItem);
+  };
   return (
-    <CartContext.Provider value={{ item, setItem }}>
+    <CartContext.Provider value={{ item, pushItem }}>
       {props.children}
     </CartContext.Provider>
   );

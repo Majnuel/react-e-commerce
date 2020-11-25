@@ -5,8 +5,7 @@ import { CartContext } from "../context/cartContext";
 
 export default function ItemCard(props) {
   const cartContext = useContext(CartContext);
-  const { item, setItem } = cartContext;
-  console.log(item);
+  const { item, pushItem } = cartContext;
   return (
     <div className="card productCard">
       <Link to={"/itemDetail/" + props.productName}>
@@ -26,7 +25,7 @@ export default function ItemCard(props) {
           autem deserunt, dolorem earum quos.
         </p>
         <button
-          onClick={() => setItem("se agregó un item al cart")}
+          onClick={() => pushItem(props.productName)}
           className="btn btn-primary"
         >
           Add to Cart
