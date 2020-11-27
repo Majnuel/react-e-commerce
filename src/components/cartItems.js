@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useCartContext } from "../context/cartContext";
 
-export default function CartItems() {
+export default function CartItems(props) {
   const cartContext = useCartContext();
   const { item } = cartContext;
 
@@ -18,6 +18,8 @@ export default function CartItems() {
       <h1>cart items</h1>
       {/* NO ESTÁ FUNCIONANDO EL MAP, NO SE MUESTRAN LOS ITEMS EN PANTALLA, EL USEEFFECT MUESTRA EL ARRAY DE PRODUCTOS EN CARRITO OK */}
       <ul>{() => item.map(mapCartItems)}</ul>
+      <p>Item: {props.itemToRender}</p>
+      <p>Quantity: {props.quantity}</p>
     </div>
   );
 }
