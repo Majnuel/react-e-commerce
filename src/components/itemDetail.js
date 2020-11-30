@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import QuantityInput from "./quantityInput";
 import { useParams, Link } from "react-router-dom";
+import { CartContext } from "../context/cartContext";
 
-export default function ItemDetail(props) {
+export default function ItemDetail() {
+  const cartContext = useContext(CartContext);
+  const { pushItem } = cartContext;
   console.log(useParams());
+  let itemId = useParams().id;
   return (
     <div className="container">
       <h1>Item Detail</h1>
@@ -20,7 +24,7 @@ export default function ItemDetail(props) {
             magni libero assumenda vitae laborum quibusdam similique dignissimos
             culpa?
           </p>
-          <button href="www.google.com" className="btn btn-primary">
+          <button onClick={() => pushItem(itemId)} className="btn btn-primary">
             Add to Cart
           </button>
           <QuantityInput />

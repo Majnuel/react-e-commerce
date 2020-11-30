@@ -5,7 +5,7 @@ import { CartContext } from "../context/cartContext";
 
 export default function ItemCard(props) {
   const cartContext = useContext(CartContext);
-  const { item, pushItem } = cartContext;
+  const { pushItem } = cartContext;
   return (
     <div className="card productCard">
       <Link to={"/itemDetail/" + props.productName}>

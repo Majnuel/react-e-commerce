@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Link, Switch } from "react-router-dom";
 import Navbar from "./navbar";
 import Cart from "./cart";
@@ -7,8 +7,14 @@ import Categories from "./categories";
 import Login from "./login/logIn";
 import MainScreen from "./mainScreen";
 import ItemDetail from "./itemDetail";
+import { useCartContext } from "../context/cartContext";
 
 function Header() {
+  const cartContext = useCartContext();
+  const { item } = cartContext;
+  useEffect(() => {
+    console.log(item);
+  }, [item]);
   return (
     <div className="header-wraper">
       <div className="header container d-flex flex-row justify-content-around align-items-center">
@@ -18,6 +24,7 @@ function Header() {
         <Navbar />
         <Link to="/cart">
           <h1>Cart</h1>
+          <div className="itemNumberOnCartIcon">{item.length}</div>
         </Link>
       </div>
       <Switch>
