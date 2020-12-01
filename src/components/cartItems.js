@@ -1,29 +1,44 @@
 import React, { useEffect } from "react";
 import { useCartContext } from "../context/cartContext";
+import { products } from "../products/products";
 
 export default function CartItems() {
   const cartContext = useCartContext();
   const { item } = cartContext;
   useEffect(() => {
-    console.log(item);
+    console.log("useEffect: " + item);
   }, [item]);
 
-  // const mapCartItems = (item) => {
-  //   return <li>{item}</li>;
-  // };
+  let product;
+  let properties;
+  const renderCartItems = (item, products) => {
+    //LOOP THROUGH THE ARRAY OF PRODUCTS IN CART
+    item.forEach((element) => {
+      // LOOP THROUGH THE LIST OF AVAILABLE PRODUCTS
+      for (product of products) {
+        // LOOP THROUGH THE PROPERTIES OF THESE PRODUCTS
+        for (properties in product) {
+          if (element === product[properties]) {
+            console.log(product[properties]);
+            console.log(element);
+            console.log(typeof element);
+            console.log(typeof product[properties]);
+            return <p>product[properties]</p>;
+          }
+        }
+      }
+    });
+  };
 
   return (
-    <div>
+    <div className="container">
       <h1>cart items</h1>
-      <p> Items: {item.join(", ")}</p>
-      <p> Cantidad de items en carro: {item.length}</p>
-
-      {/* NO ESTÁ FUNCIONANDO EL MAP, NO SE MUESTRAN LOS ITEMS EN PANTALLA, EL USEEFFECT MUESTRA EL ARRAY DE PRODUCTOS EN CARRITO OK */}
       <ul>
         {item.map((p, index) => (
           <li key={index}>{p}</li>
         ))}
       </ul>
+      <div>{renderCartItems(item, products)}</div>
     </div>
   );
 }

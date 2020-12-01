@@ -9,11 +9,7 @@ export default function ItemCard(props) {
   return (
     <div className="card productCard">
       <Link to={"/itemDetail/" + props.productName}>
-        <img
-          // className="card-img-top"
-          src="https://via.placeholder.com/200"
-          alt="item"
-        ></img>
+        <img src="https://via.placeholder.com/200" alt="item"></img>
       </Link>
       <div className="card-body">
         <Link to={"/itemDetail/" + props.productName}>
