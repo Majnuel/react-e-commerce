@@ -6,24 +6,24 @@ import { CartContext } from "../context/cartContext";
 export default function ItemCard(props) {
   const cartContext = useContext(CartContext);
   const { pushItem } = cartContext;
+  const product = {
+    id: props.id,
+    name: props.name,
+    price: props.price,
+  };
+
   return (
     <div className="card productCard">
-      <Link to={"/itemDetail/" + props.productName}>
+      <Link to={"/itemDetail/" + props.id}>
         <img src="https://via.placeholder.com/200" alt="item"></img>
       </Link>
       <div className="card-body">
-        <Link to={"/itemDetail/" + props.productName}>
-          <h5 className="card-title">{props.productName}</h5>
+        <Link to={"/itemDetail/" + props.id}>
+          <h5 className="card-title">{props.name}</h5>
         </Link>
 
-        <p className="card-text">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel animi
-          autem deserunt, dolorem earum quos.
-        </p>
-        <button
-          onClick={() => pushItem(props.productName)}
-          className="btn btn-primary"
-        >
+        <p className="card-text">{props.description}</p>
+        <button onClick={() => pushItem(product)} className="btn btn-primary">
           Add to Cart
         </button>
         <QuantityInput />

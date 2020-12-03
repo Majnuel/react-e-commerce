@@ -11,10 +11,10 @@ import { useCartContext } from "../context/cartContext";
 
 function Header() {
   const cartContext = useCartContext();
-  const { item } = cartContext;
+  const { items } = cartContext;
   useEffect(() => {
-    console.log(item);
-  }, [item]);
+    console.log(items);
+  }, [items]);
   return (
     <div className="header-wraper">
       <div className="header container d-flex flex-row justify-content-around align-items-center">
@@ -24,7 +24,7 @@ function Header() {
         <Navbar />
         <Link to="/cart">
           <h1>Cart</h1>
-          <div className="itemNumberOnCartIcon">{item.length}</div>
+          <div className="itemNumberOnCartIcon">{items.length}</div>
         </Link>
       </div>
       <Switch>

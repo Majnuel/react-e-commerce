@@ -5,12 +5,23 @@ export const CartContext = createContext();
 export const useCartContext = () => useContext(CartContext);
 
 const CartContextProvider = (props) => {
-  const [item, setItem] = useState([]);
+  const [items, setItems] = useState([]);
   const pushItem = (newItem) => {
-    item.push(newItem);
+    items.push(newItem);
   };
+
+  // let itemToAdd = getItem(state, payload.item.id);
+  // while (itemToAdd === undefined) {
+  // state.items = [ ...state.items, {
+  // ...payload.item,
+  // quantity: 0
+  // }]
+  // itemToAdd = getItem(state, payload.item.id);
+  // }
+  // itemToAdd.quantity += payload.quantity;
+
   return (
-    <CartContext.Provider value={{ item, pushItem }}>
+    <CartContext.Provider value={{ items, pushItem }}>
       {props.children}
     </CartContext.Provider>
   );

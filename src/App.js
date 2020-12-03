@@ -12,7 +12,6 @@ function App() {
         <BrowserRouter>
           <div className="App">
             <Header />
-            {/* Lucas estuvo aca */}
             {/* <Footer /> */}
           </div>
         </BrowserRouter>
