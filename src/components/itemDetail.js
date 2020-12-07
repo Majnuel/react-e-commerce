@@ -1,17 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import QuantityInput from "./quantityInput";
 import { useParams, Link, Redirect } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
 import { products as productList } from "../products/products";
+import { DB } from "../tools/firebaseFactory";
 
 export default function ItemDetail() {
+  const [product, setProduct] = useState({});
   const cartContext = useContext(CartContext);
   const { pushItem } = cartContext;
   const id = useParams().id;
-  const product = productList.filter((prod) => prod.id === id)[0];
-  if (!product) {
-    return <Redirect to="/" />;
-  }
+  useEffect(() => {
+    DB.collection("e-commerce")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (!doc.exists) {
+          console.log("sin resultados");
+          return <Redirect to="/" />;
+        }
+        const productInDB = {
+          id: doc.id,
+          ...doc.data(),
+        };
+        setProduct(productInDB);
+      })
+      .catch((error) => <Redirect to="/" />);
+    // .finally(() => setLoading(false));
+  }, [id]);
   return (
     <div className="container">
       <h1>{product.name}</h1>

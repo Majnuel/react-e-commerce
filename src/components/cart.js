@@ -1,34 +1,36 @@
 import React from "react";
 import CartItem from "./cartItem";
 import { useCartContext } from "../context/cartContext";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const cartContext = useCartContext();
-  const { items } = cartContext;
+  const { items, grandTotal } = cartContext;
   console.log(items);
-  const quantity = (itemsInCart) => {
-    let quantity = 0;
-    let products;
-    for (products of itemsInCart) {
-      let properties;
-      for (properties in products) {
-        if (properties === "id") {
-          quantity += 1;
-        }
-        console.log(quantity);
-      }
-    }
-  };
+  console.log(grandTotal);
+
   return (
     <div>
       <h1>cart</h1>
       <div className="container">
         <h1>cart items</h1>
         <div>
-          {quantity(items)}
-          {items.map((item, index) => (
-            <CartItem key={index} quantity={() => quantity} {...item} />
-          ))}
+          {items.length === 0 ? (
+            <div className="container">
+              <h3>No items in cart yet</h3>
+              <Link to="/">
+                <h5>I want to buy some sh!</h5>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              {" "}
+              {items.map((item, index) => (
+                <CartItem key={index} {...item} />
+              ))}{" "}
+              {grandTotal === 0 ? "" : `Total: ${grandTotal}`}
+            </div>
+          )}
         </div>
       </div>
     </div>
