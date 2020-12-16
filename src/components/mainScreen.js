@@ -17,14 +17,12 @@ export default function MainScreen() {
           ...doc.data(),
         }));
         setProducts(productListInDB);
-        result.docs.map((doc) => console.log(doc.data()));
+        // result.docs.map((doc) => console.log(doc.data()));
         console.log(productListInDB);
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }, []);
-  function getByID() {}
-  function getByWhere() {}
 
   return (
     <div>
@@ -41,9 +39,6 @@ export default function MainScreen() {
             ))}
           </div>
         )}
-
-        <button onClick={getByID}>Get by id</button>
-        <button onClick={getByWhere}>Get by where</button>
       </div>
     </div>
   );

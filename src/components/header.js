@@ -1,8 +1,8 @@
+import { useCartContext } from "../context/cartContext";
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./navbar";
-
-import { useCartContext } from "../context/cartContext";
+import { ReactComponent as CartIcon } from "../assets/shopping-cart.svg";
 
 function Header() {
   const cartContext = useCartContext();
@@ -16,7 +16,10 @@ function Header() {
         </Link>
         <Navbar />
         <Link to="/cart">
-          <div className="itemNumberOnCartIcon">{amount}</div>
+          <div className="cartIcon">
+            <CartIcon alt="shopping cart" />
+            <div className="itemNumberOnCartIcon">{amount}</div>
+          </div>
         </Link>
       </div>
     </div>

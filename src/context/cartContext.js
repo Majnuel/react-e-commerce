@@ -9,6 +9,11 @@ const CartContextProvider = (props) => {
   const [amount, setAmount] = useState(0);
   const [grandTotal, setGrandTotal] = useState(0);
   const [updated, setUpdated] = useState(0);
+
+  const clearCart = () => {
+    setItems([]);
+  };
+
   const pushItem = (newItem) => {
     let itemToAdd = items.filter((prod) => prod.id === newItem.id)[0];
     console.log(itemToAdd);
@@ -21,7 +26,6 @@ const CartContextProvider = (props) => {
           price: newItem.price,
         },
       ]);
-      // setAmount(items.reduce((prev, item) => item.quantity + prev, 0) + 1);
     } else {
       itemToAdd.quantity += 1;
     }
@@ -39,7 +43,9 @@ const CartContextProvider = (props) => {
   }, [updated, items]);
 
   return (
-    <CartContext.Provider value={{ items, amount, grandTotal, pushItem }}>
+    <CartContext.Provider
+      value={{ items, amount, grandTotal, pushItem, clearCart }}
+    >
       {props.children}
     </CartContext.Provider>
   );

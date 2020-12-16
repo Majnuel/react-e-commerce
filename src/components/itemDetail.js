@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import QuantityInput from "./quantityInput";
 import { useParams, Link, Redirect } from "react-router-dom";
 import { CartContext } from "../context/cartContext";
-import { products as productList } from "../products/products";
 import { DB } from "../tools/firebaseFactory";
 
 export default function ItemDetail() {
@@ -26,7 +25,6 @@ export default function ItemDetail() {
         setProduct(productInDB);
       })
       .catch((error) => <Redirect to="/" />);
-    // .finally(() => setLoading(false));
   }, [id]);
   return (
     <div className="container">

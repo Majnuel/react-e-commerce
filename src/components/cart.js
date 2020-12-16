@@ -1,13 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "./cartItem";
 import { useCartContext } from "../context/cartContext";
+import { useUserContext } from "../context/userContext";
 import { Link } from "react-router-dom";
+import { DB, TIMESTAMP } from "../tools/firebaseFactory";
+import Login from "./login/logIn";
+// import Login from "./login/logIn";
 
 export default function Cart() {
   const cartContext = useCartContext();
-  const { items, grandTotal } = cartContext;
+  const userContext = useUserContext();
+  const [modalShown, setModalShown] = useState(false);
+  const { items, grandTotal, clearCart } = cartContext;
+  const { registeredUser, user } = userContext;
+  console.log(registeredUser);
   console.log(items);
   console.log(grandTotal);
+
+  const postNewOrder = () => {
+    console.log(registeredUser);
+    if (registeredUser) {
+      const order = DB.collection("orders");
+      order
+        .add({
+          buyer: { ...user },
+          items: items,
+          itemQuantity: items.length,
+          total: grandTotal,
+          timeStamp: TIMESTAMP.now(),
+        })
+        .then(() => clearCart())
+        .catch((error) => console.log(error))
+        .finally(console.log("finally"));
+    } else {
+      console.log("user not registered");
+      setModalShown(true);
+    }
+  };
 
   return (
     <div>
@@ -28,11 +57,13 @@ export default function Cart() {
               {items.map((item, index) => (
                 <CartItem key={index} {...item} />
               ))}{" "}
-              {grandTotal === 0 ? "" : `Total: ${grandTotal}`}
+              {grandTotal === 0 ? null : `Total: ${grandTotal}`}
             </div>
           )}
         </div>
       </div>
+      {modalShown && !registeredUser ? <Login /> : null}
+      <button onClick={postNewOrder}>buy</button>
     </div>
   );
 }

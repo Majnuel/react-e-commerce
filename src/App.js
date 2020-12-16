@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./components/header";
 import { Route, Switch, BrowserRouter } from "react-router-dom";
 // import Footer from "./components/footer";
-import GlobalContextProvider from "./context/globalContext";
+import UserContextProvider from "./context/userContext";
 import CartContextProvider from "./context/cartContext";
 import Cart from "./components/cart";
 import ContactUs from "./components/contactUs";
@@ -13,7 +13,7 @@ import ItemDetail from "./components/itemDetail";
 
 function App() {
   return (
-    <GlobalContextProvider>
+    <UserContextProvider>
       <CartContextProvider>
         <BrowserRouter>
           <div className="App">
@@ -30,7 +30,7 @@ function App() {
           </div>
         </BrowserRouter>
       </CartContextProvider>
-    </GlobalContextProvider>
+    </UserContextProvider>
   );
 }
 
