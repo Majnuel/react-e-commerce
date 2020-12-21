@@ -18,7 +18,9 @@ function Header() {
         <Link to="/cart">
           <div className="cartIcon">
             <CartIcon alt="shopping cart" />
-            <div className="itemNumberOnCartIcon">{amount}</div>
+            {amount === 0 ? null : (
+              <div className="itemNumberOnCartIcon">{amount}</div>
+            )}
           </div>
         </Link>
       </div>

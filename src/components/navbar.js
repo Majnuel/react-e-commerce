@@ -5,14 +5,25 @@ import { useUserContext } from "../context/userContext";
 export default function Navbar() {
   const userContext = useUserContext();
   const { user, registeredUser, logout } = userContext;
-  console.log(user);
   return (
-    <nav className="navbar d-flex flex-row justify-content-around">
-      <Link to="/">Home</Link>
-      <Link to="/categories">Categories</Link>
-      <Link to="/contact">Contact Us</Link>
-      {!registeredUser ? <Link to="/login">Login</Link> : user.name}
-      {registeredUser ? <a onClick={logout}>logout</a> : null}
+    <nav className="navbar navbar-expand-lg">
+      <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/contact">Contact Us</Link>
+        </li>
+        <li className="nav-item">
+          {!registeredUser ? <Link to="/login">Register</Link> : user.name}
+        </li>
+        {registeredUser ? (
+          <li className="nav-item">
+            {" "}
+            <span onClick={logout}>logout</span>{" "}
+          </li>
+        ) : null}
+      </ul>
     </nav>
   );
 }

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import CartItem from "./cartItem";
-import { useCartContext } from "../context/cartContext";
-import { useUserContext } from "../context/userContext";
+import { CartItem } from "./";
+import { useCartContext } from "../../context/cartContext";
+import { useUserContext } from "../../context/userContext";
 import { Link } from "react-router-dom";
-import { DB, TIMESTAMP } from "../tools/firebaseFactory";
-import Login from "./login/logIn";
-// import Login from "./login/logIn";
+import { DB, TIMESTAMP } from "../../tools/firebaseFactory";
+import Login from "../login/logIn";
+import "./cart.scss";
 
 export default function Cart() {
   const cartContext = useCartContext();
@@ -39,31 +39,33 @@ export default function Cart() {
   };
 
   return (
-    <div>
-      <h1>cart</h1>
-      <div className="container">
-        <h1>cart items</h1>
-        <div>
-          {items.length === 0 ? (
-            <div className="container">
-              <h3>No items in cart yet</h3>
-              <Link to="/">
-                <h5>I want to buy some sh!</h5>
-              </Link>
-            </div>
-          ) : (
-            <div>
-              {" "}
-              {items.map((item, index) => (
-                <CartItem key={index} {...item} />
-              ))}{" "}
+    <div className="container">
+      <h1>Cart</h1>
+      <div>
+        {items.length === 0 ? (
+          <div className="d-flex flex-column justify-content-start align-items-center">
+            <h3 className="noItemsInCart">No items in cart yet</h3>
+            <Link to="/">
+              <button type="button" className="btn btn-primary">
+                I want to buy!
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <div className="cart cart-grid">
+              {items.map((item) => (
+                <CartItem key={item.id} {...item} />
+              ))}
               {grandTotal === 0 ? null : `Total: ${grandTotal}`}
             </div>
-          )}
-        </div>
+            <button className="btn btn-primary btn-lg" onClick={postNewOrder}>
+              Checkout
+            </button>
+          </>
+        )}
       </div>
       {modalShown && !registeredUser ? <Login /> : null}
-      <button onClick={postNewOrder}>buy</button>
     </div>
   );
 }

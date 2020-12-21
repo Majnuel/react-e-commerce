@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ItemCard from "./itemCard";
+import "./spinner.css";
+import ItemCard from "./item-card/itemCard";
 import { DB } from "../tools/firebaseFactory";
 
 export default function MainScreen() {
@@ -7,6 +8,7 @@ export default function MainScreen() {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     DB.collection("e-commerce")
+      .orderBy("name", "asc")
       .get()
       .then((result) => {
         if (result.size === 0) {
@@ -17,8 +19,6 @@ export default function MainScreen() {
           ...doc.data(),
         }));
         setProducts(productListInDB);
-        // result.docs.map((doc) => console.log(doc.data()));
-        console.log(productListInDB);
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
@@ -29,13 +29,20 @@ export default function MainScreen() {
       <h1>Your Products</h1>
       <div className="container">
         {loading ? (
-          <div>cargandon</div>
+          <div className="d-flex flex-row justify-content-center align-items-center mt-">
+            <div class="sk-chase">
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+            </div>
+          </div>
         ) : (
-          <div className="justify-content-between row productsContainer">
+          <div className="card-columns productsContainer">
             {products.map((p) => (
-              <div key={p.id} className="col-md-4">
-                <ItemCard {...p} />
-              </div>
+              <ItemCard key={p.id} {...p} />
             ))}
           </div>
         )}

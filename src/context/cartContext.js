@@ -14,23 +14,32 @@ const CartContextProvider = (props) => {
     setItems([]);
   };
 
-  const pushItem = (newItem) => {
+  const changeQuantity = (itemId, newQuantity) => {
+    const item = items.filter((prod) => prod.id === itemId)[0];
+    if (item === undefined) return;
+    if (newQuantity === 0) return removeItem(itemId);
+    item.quantity = newQuantity;
+    setUpdated(updated + 1);
+  };
+
+  const removeItem = (itemId) =>
+    setItems(items.filter((prod) => prod.id !== itemId));
+
+  const pushItem = (newItem, quantity = 1) => {
     let itemToAdd = items.filter((prod) => prod.id === newItem.id)[0];
-    console.log(itemToAdd);
     if (itemToAdd === undefined) {
       setItems([
         ...items,
         {
           ...newItem,
-          quantity: 1,
+          quantity: quantity,
           price: newItem.price,
         },
       ]);
     } else {
-      itemToAdd.quantity += 1;
+      itemToAdd.quantity += quantity;
     }
     setUpdated(updated + 1);
-    console.log(amount);
   };
   useEffect(() => {
     setAmount(items.reduce((prev, item) => item.quantity + prev, 0));
@@ -44,7 +53,15 @@ const CartContextProvider = (props) => {
 
   return (
     <CartContext.Provider
-      value={{ items, amount, grandTotal, pushItem, clearCart }}
+      value={{
+        items,
+        amount,
+        grandTotal,
+        pushItem,
+        clearCart,
+        removeItem,
+        changeQuantity,
+      }}
     >
       {props.children}
     </CartContext.Provider>

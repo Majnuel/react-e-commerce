@@ -4,7 +4,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 // import Footer from "./components/footer";
 import UserContextProvider from "./context/userContext";
 import CartContextProvider from "./context/cartContext";
-import Cart from "./components/cart";
+import { Cart } from "./components/cart";
 import ContactUs from "./components/contactUs";
 import Categories from "./components/categories";
 import Login from "./components/login/logIn";

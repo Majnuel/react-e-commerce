@@ -28,7 +28,7 @@ export default function ContactUs() {
 
                   {/* <!-- Email input--> */}
                   <div className="form-group">
-                    <label className="col-md-3 control-label" htmlFor="email">
+                    <label className="col-md-6 control-label" htmlFor="email">
                       Your E-mail
                     </label>
                     <div className="col-md-9">
@@ -44,7 +44,7 @@ export default function ContactUs() {
 
                   {/* <!-- Message body --> */}
                   <div className="form-group">
-                    <label className="col-md-3 control-label" htmlFor="message">
+                    <label className="col-md-6 control-label" htmlFor="message">
                       Your message
                     </label>
                     <div className="col-md-9">

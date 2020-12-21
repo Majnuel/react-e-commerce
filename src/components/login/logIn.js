@@ -17,7 +17,7 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <div className="wrapper fadeInDown">
         <div id="formContent">
           {/* <!-- Tabs Titles --> */}
@@ -55,13 +55,6 @@ export default function Login() {
             />
             <button type="submit">Register</button>
           </form>
-
-          {/* <!-- Remind Passowrd --> */}
-          {/* <div id="formFooter">
-            <a className="underlineHover" href="www.google.com">
-              Forgot Password?
-            </a>
-          </div> */}
         </div>
       </div>
     </div>

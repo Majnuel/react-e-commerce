@@ -6,10 +6,11 @@ export const useUserContext = () => useContext(UserContext);
 
 const UserContextProvider = (props) => {
   const localUser = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState({ ...localUser });
   const [registeredUser, setRegisteredUser] = useState(
     localUser !== null && localUser !== {}
   );
-  const [user, setUser] = useState({ ...localUser });
+  console.log(localUser);
 
   const logout = () => {
     setUser({});
@@ -17,7 +18,6 @@ const UserContextProvider = (props) => {
   };
 
   const login = (name, phone, email) => {
-    console.log(name, phone, email);
     setUser({
       name: name,
       phone: phone,
@@ -28,8 +28,8 @@ const UserContextProvider = (props) => {
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
-    console.log(user);
   }, [user, registeredUser]);
+  console.log(registeredUser);
 
   return (
     <UserContext.Provider value={{ registeredUser, user, login, logout }}>

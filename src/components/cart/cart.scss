@@ -1,0 +1,14 @@
+.cart {
+  .cartItem {
+    display: grid;
+    grid-template-columns: 1fr 100px 200px auto;
+    text-align: left;
+    & + * {
+      margin-top: 1rem;
+    }
+  }
+}
+
+h1 {
+  margin-bottom: 15px;
+}

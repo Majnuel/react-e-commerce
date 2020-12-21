@@ -1,21 +1,34 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 
-//como no es el default export necesita ser destructured: usar {}
-import { CartContext } from "../context/cartContext";
+export default function QuantityInput({
+  max = 10,
+  min = 1,
+  updateQuantity = () => {},
+  ...props
+}) {
+  const [quantity, setQuantity] = useState(1);
 
-export default function QuantityInput(props) {
-  const [quantity, setQuantity] = useState(0);
-  const cartContext = useContext(CartContext);
+  const handleClick = (newValue) => {
+    if (newValue < min || newValue > max) return;
+    setQuantity(newValue);
+    updateQuantity(newValue);
+  };
 
   return (
-    <div className="d-flex flex-row">
+    <div className="d-flex flex-row justify-content-between">
       <button
-        onClick={() => (quantity > 0 ? setQuantity(quantity - 1) : quantity)}
+        className="btn btn-secondary"
+        onClick={() => handleClick(quantity - 1)}
       >
         -
       </button>
-      <p>{quantity}</p>
-      <button onClick={() => setQuantity(quantity + 1)}>+</button>
+      <div>{quantity}</div>
+      <button
+        className="btn btn-secondary"
+        onClick={() => handleClick(quantity + 1)}
+      >
+        +
+      </button>
     </div>
   );
 }
