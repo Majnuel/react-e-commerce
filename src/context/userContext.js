@@ -8,7 +8,7 @@ const UserContextProvider = (props) => {
   const localUser = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState({ ...localUser });
   const [registeredUser, setRegisteredUser] = useState(
-    localUser !== null && localUser !== {}
+    localUser === null && localUser !== {}
   );
   console.log(localUser);
 

@@ -105,3 +105,17 @@ div#root {
   font-size: 30px;
   font-weight: 700;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-top: 1rem;
+  background-color: hsl(240, 27%, 27%);
+  text-align: center;
+  color: #ffffff;
+}
+
+.logout {
+  cursor: pointer;
+}

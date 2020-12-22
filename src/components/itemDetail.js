@@ -31,7 +31,11 @@ export default function ItemDetail() {
     <div className="container ">
       <div className="row border-right">
         <div className="col-md-6 col-lg-4">
-          <img className="img-fluid" src={product.img} alt={product.name} />
+          <img
+            className="img-fluid shadow-lg"
+            src={product.img}
+            alt={product.name}
+          />
         </div>
         <div className="col">
           <h1>{product.name}</h1>

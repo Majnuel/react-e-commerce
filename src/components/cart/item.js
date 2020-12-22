@@ -15,7 +15,7 @@ export default function CartItem(props) {
     <div className="cartItem">
       <div>{props.name}</div>
       <div>${props.price}</div>
-      <div>cantidad: {innerQuantity}</div>
+      <div>quantity: {innerQuantity}</div>
       <div className="btn-toolbar">
         <div className="btn-group mr-2">
           <button

@@ -12,16 +12,15 @@ export default function Login() {
   const submitLogin = (e) => {
     e.preventDefault();
     login(name, phone, email);
+
     return false;
   };
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="register-modal">
       <div className="wrapper fadeInDown">
         <div id="formContent">
-          {/* <!-- Tabs Titles --> */}
-
+          <h1>Register</h1>
           {/* <!-- Icon --> */}
           <div className="fadeIn first">
             <UserIcon alt="User Icon" width="100" />

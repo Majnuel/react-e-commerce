@@ -20,7 +20,9 @@ export default function Navbar() {
         {registeredUser ? (
           <li className="nav-item">
             {" "}
-            <span onClick={logout}>logout</span>{" "}
+            <span className="Logout" onClick={logout}>
+              logout
+            </span>{" "}
           </li>
         ) : null}
       </ul>

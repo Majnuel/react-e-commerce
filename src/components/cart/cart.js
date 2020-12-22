@@ -47,7 +47,7 @@ export default function Cart() {
             <h3 className="noItemsInCart">No items in cart yet</h3>
             <Link to="/">
               <button type="button" className="btn btn-primary">
-                I want to buy!
+                Back to store
               </button>
             </Link>
           </div>
@@ -57,11 +57,18 @@ export default function Cart() {
               {items.map((item) => (
                 <CartItem key={item.id} {...item} />
               ))}
-              {grandTotal === 0 ? null : `Total: ${grandTotal}`}
             </div>
-            <button className="btn btn-primary btn-lg" onClick={postNewOrder}>
-              Checkout
-            </button>
+            <div className="d-flex flex-column align-items-end border-top mt-5">
+              {grandTotal === 0 ? null : (
+                <div className="mt-3">Total: $ ${grandTotal}</div>
+              )}
+              <button
+                className="btn btn-primary btn-lg shadow mt-3"
+                onClick={postNewOrder}
+              >
+                Checkout
+              </button>
+            </div>
           </>
         )}
       </div>
