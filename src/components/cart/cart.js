@@ -44,9 +44,9 @@ export default function Cart() {
       <div>
         {items.length === 0 ? (
           <div className="d-flex flex-column justify-content-start align-items-center">
-            <h3 className="noItemsInCart">No items in cart yet</h3>
+            <h3 className="noItemsInCart mb-5">No items in cart yet</h3>
             <Link to="/">
-              <button type="button" className="btn btn-primary">
+              <button type="button" className="btn btn-primary btn-lg">
                 Back to store
               </button>
             </Link>

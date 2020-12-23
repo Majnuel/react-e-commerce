@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./login.css";
 import { ReactComponent as UserIcon } from "../../assets/user-icon.svg";
 import { useUserContext } from "../../context/userContext";
+import { Redirect } from "react-router-dom";
 
 export default function Login() {
-  const { login } = useUserContext();
+  const { login, registeredUser } = useUserContext();
   let [name, setName] = useState("");
   let [phone, setPhone] = useState("");
   let [email, setEmail] = useState("");
@@ -56,6 +57,7 @@ export default function Login() {
           </form>
         </div>
       </div>
+      {registeredUser ? <Redirect to="/" /> : null}
     </div>
   );
 }

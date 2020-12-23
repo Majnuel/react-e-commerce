@@ -3,6 +3,19 @@ import { Link } from "react-router-dom";
 import { useUserContext } from "../context/userContext";
 
 export default function Navbar() {
+  // const displayedUserName = (userName) => {
+  //   console.log("ezio");
+  //   if (userName.indexOf(" ") === -1) {
+  //     console.log(userName);
+  //     return userName;
+  //   } else if (userName.indexOf(" ") > 0) {
+  //     let userFirstName = userName.split(" ")[0];
+  //     let userSecondName = userName.split(" ")[1];
+  //     console.log(`${userFirstName} ${userSecondName[0]}.`);
+  //     return `${userFirstName} ${userSecondName[0]}.`;
+  //   }
+  // };
+
   const userContext = useUserContext();
   const { user, registeredUser, logout } = userContext;
   return (
@@ -20,7 +33,7 @@ export default function Navbar() {
         {registeredUser ? (
           <li className="nav-item">
             {" "}
-            <span className="Logout" onClick={logout}>
+            <span className="logout" onClick={logout}>
               logout
             </span>{" "}
           </li>

@@ -119,3 +119,7 @@ div#root {
 .logout {
   cursor: pointer;
 }
+
+.user-name {
+  color: rgb(0, 132, 255);
+}
